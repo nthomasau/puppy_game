@@ -20,12 +20,19 @@ document.addEventListener('DOMContentLoaded', () => {
   let puppyName = '';
   let houseStage = 0;
 
-  function showScene(name) {
-    for (const key in scenes) {
-      scenes[key].classList.remove('active');
+    function showScene(name) {
+      for (const key in scenes) {
+        if (scenes[key]) {
+          scenes[key].classList.remove('active');
+        }
+      }
+      if (scenes[name]) {
+        scenes[name].classList.add('active');
+      } else {
+        console.error('Scene not found:', name);
+        if (scenes.title) scenes.title.classList.add('active');
+      }
     }
-    scenes[name].classList.add('active');
-  }
 
   const colorList = [
     {name: 'Red', value: '#ff0000'},
