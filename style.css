@@ -192,3 +192,70 @@ input[type="text"] {
   font-size: 18px;
   min-height: 24px;
 }
+
+/* Color picker styles */
+.colorOptions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.colorSquare {
+  width: 32px;
+  height: 32px;
+  border: 2px solid #2c3e50;
+  cursor: pointer;
+}
+
+.colorSquare.selected {
+  border-color: #e67e22;
+}
+
+.colorBox {
+  width: 24px;
+  height: 24px;
+  border: 1px solid #2c3e50;
+  display: inline-block;
+  margin: 0 5px;
+}
+
+/* Backyard scene */
+.backyardContainer {
+  position: relative;
+  width: 256px;
+  height: 256px;
+  margin-top: 20px;
+}
+
+#backyardBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 256px;
+  height: 256px;
+  background-color: #6cdb6c;
+}
+
+.puppyBackyard {
+  position: absolute;
+  bottom: 20px;
+  left: 104px;
+  width: 48px;
+  height: 48px;
+  image-rendering: pixelated;
+}
+
+.gearDisplay {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: rgba(255,255,255,0.8);
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
