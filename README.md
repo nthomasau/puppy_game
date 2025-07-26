@@ -3,8 +3,8 @@
 Puppy Adventure is a small browser game built with vanilla HTML, CSS and JavaScript. The game lets you choose a character and puppy, pick some supplies, and then care for your new pet Tamagotchi‑style.
 
 ## Features
-- Select one of four characters and four puppy breeds
-- Choose bowl and lead colours
+- Choose to play as a boy or girl and select a matching character and four puppy breeds
+- Choose bowl and lead colours from a wider palette
 - Name your puppy (its name must start with the same first letter as yours)
 - Welcome the puppy home and play with it in the backyard
 - Take care of hunger, fun, cleanliness and energy by performing actions such as feeding or walking
