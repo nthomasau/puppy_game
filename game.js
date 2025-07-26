@@ -4,16 +4,21 @@ document.addEventListener('DOMContentLoaded', () => {
     character: document.getElementById('characterScene'),
     puppy: document.getElementById('puppyScene'),
     item: document.getElementById('itemScene'),
+    color: document.getElementById('colorScene'),
     name: document.getElementById('nameScene'),
     house: document.getElementById('houseScene'),
+    backyard: document.getElementById('backyardScene'),
     tamagotchi: document.getElementById('tamagotchiScene'),
   };
 
   let selectedCharacter = null;
   let selectedPuppy = null;
   let selectedItems = [];
+  let selectedBowlColor = '';
+  let selectedLeadColor = '';
   let playerName = '';
   let puppyName = '';
+  let houseStage = 0;
 
   function showScene(name) {
     for (const key in scenes) {
@@ -21,6 +26,50 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     scenes[name].classList.add('active');
   }
+
+  const colorList = [
+    {name: 'Red', value: '#ff0000'},
+    {name: 'Orange', value: '#ff7f00'},
+    {name: 'Yellow', value: '#ffff00'},
+    {name: 'Green', value: '#00ff00'},
+    {name: 'Blue', value: '#0000ff'},
+    {name: 'Purple', value: '#8000ff'},
+    {name: 'Pink', value: '#ff1493'},
+    {name: 'Brown', value: '#8b4513'},
+    {name: 'Black', value: '#000000'},
+    {name: 'White', value: '#ffffff'},
+    {name: 'Neon', value: '#39ff14'}
+  ];
+
+  function buildColorOptions(container) {
+    colorList.forEach(c => {
+      const div = document.createElement('div');
+      div.classList.add('colorSquare');
+      div.style.backgroundColor = c.value;
+      div.dataset.name = c.name;
+      container.appendChild(div);
+    });
+  }
+
+  buildColorOptions(document.getElementById('bowlColors'));
+  buildColorOptions(document.getElementById('leadColors'));
+
+  function handleColorSelection(container, callback) {
+    container.querySelectorAll('.colorSquare').forEach(square => {
+      square.addEventListener('click', () => {
+        container.querySelectorAll('.colorSquare').forEach(s => s.classList.remove('selected'));
+        square.classList.add('selected');
+        callback(square.dataset.name, square.style.backgroundColor);
+      });
+    });
+  }
+
+  handleColorSelection(document.getElementById('bowlColors'), (name, val) => {
+    selectedBowlColor = val;
+  });
+  handleColorSelection(document.getElementById('leadColors'), (name, val) => {
+    selectedLeadColor = val;
+  });
 
   // Start button
   document.getElementById('startBtn').addEventListener('click', () => {
@@ -52,6 +101,13 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     const checkboxes = document.querySelectorAll('input[name="items"]:checked');
     selectedItems = Array.from(checkboxes).map(cb => cb.value);
+    showScene('color');
+  });
+
+  // Color form
+  document.getElementById('colorForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!selectedBowlColor || !selectedLeadColor) return;
     showScene('name');
   });
 
@@ -76,6 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('houseInterior').classList.add('hidden');
     document.getElementById('houseText').textContent = `${playerName}, your puppy ${puppyName} is settling in. It will sleep in the laundry tonight.`;
     document.getElementById('nextMorningBtn').textContent = 'Next';
+    houseStage = 0;
     showScene('house');
   });
 
@@ -85,16 +142,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const exterior = document.getElementById('houseExterior');
     const interior = document.getElementById('houseInterior');
     const text = document.getElementById('houseText');
-    if (!exterior.classList.contains('hidden')) {
+    if (houseStage === 0) {
       exterior.classList.add('hidden');
       interior.classList.remove('hidden');
       text.textContent = `${puppyName} is sleeping peacefully in the laundry...`;
       nextBtn.textContent = 'Morning';
+      houseStage = 1;
+    } else if (houseStage === 1) {
+      document.getElementById('puppyBackyard').src = `assets/puppies/${selectedPuppy}_idle.png`;
+      document.getElementById('bowlDisplay').style.backgroundColor = selectedBowlColor;
+      document.getElementById('leadDisplay').style.backgroundColor = selectedLeadColor;
+      showScene('backyard');
+      houseStage = 2;
     } else {
-      // move to tamagotchi scene
       prepareTamagotchi();
       showScene('tamagotchi');
     }
+  });
+
+  document.getElementById('toTamagotchiBtn').addEventListener('click', () => {
+    prepareTamagotchi();
+    showScene('tamagotchi');
   });
 
   // Tamagotchi logic

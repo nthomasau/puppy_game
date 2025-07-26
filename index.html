@@ -76,6 +76,22 @@
       <button type="submit">Next</button>
     </form>
   </div>
+
+  <!-- Color Picker Scene -->
+  <div id="colorScene" class="scene">
+    <h2>Choose Bowl &amp; Lead Colors</h2>
+    <form id="colorForm">
+      <div class="colorPicker">
+        <p>Bowl Color:</p>
+        <div id="bowlColors" class="colorOptions"></div>
+      </div>
+      <div class="colorPicker">
+        <p>Lead Color:</p>
+        <div id="leadColors" class="colorOptions"></div>
+      </div>
+      <button type="submit">Next</button>
+    </form>
+  </div>
   <!-- Name Scene -->
   <div id="nameScene" class="scene">
     <h2>Name Your Puppy</h2>
@@ -100,6 +116,20 @@
     </div>
     <p id="houseText">Your puppy will sleep in the laundry tonight.</p>
     <button id="nextMorningBtn">Next</button>
+  </div>
+
+  <!-- Backyard Scene -->
+  <div id="backyardScene" class="scene">
+    <h2>The Backyard</h2>
+    <div class="backyardContainer">
+      <div id="backyardBg"></div>
+      <img id="puppyBackyard" src="" class="puppyBackyard" alt="Puppy In Backyard">
+      <div class="gearDisplay">
+        <span>Bowl:</span><div id="bowlDisplay" class="colorBox"></div>
+        <span>Lead:</span><div id="leadDisplay" class="colorBox"></div>
+      </div>
+    </div>
+    <button id="toTamagotchiBtn">Play with Puppy</button>
   </div>
   <!-- Tamagotchi Scene -->
   <div id="tamagotchiScene" class="scene">
