@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Puppy Adventure Tamagotchi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="gameContainer">
+  <!-- Title Scene -->
+  <div id="titleScene" class="scene active">
+    <h1>Puppy Adventure</h1>
+    <p>Embark on a wholesome journey to pick your puppy and bring them home.</p>
+    <button id="startBtn">Start</button>
+  </div>
+  <!-- Character Selection -->
+  <div id="characterScene" class="scene">
+    <h2>Choose Your Friend</h2>
+    <div class="characters">
+      <div class="character" data-id="boy_brown">
+        <img src="assets/characters/boy_brown.png" alt="Boy (brown)">
+        <p>Boy (brown)</p>
+      </div>
+      <div class="character" data-id="boy_blonde">
+        <img src="assets/characters/boy_blonde.png" alt="Boy (blonde)">
+        <p>Boy (blonde)</p>
+      </div>
+      <div class="character" data-id="girl_braids">
+        <img src="assets/characters/girl_braids.png" alt="Girl (braids)">
+        <p>Girl (braids)</p>
+      </div>
+      <div class="character" data-id="girl_plait">
+        <img src="assets/characters/girl_plait.png" alt="Girl (plait)">
+        <p>Girl (plait)</p>
+      </div>
+    </div>
+  </div>
+  <!-- Puppy Selection -->
+  <div id="puppyScene" class="scene">
+    <h2>Choose Your Puppy</h2>
+    <div class="puppies">
+      <div class="puppy" data-id="border_collie">
+        <img src="assets/puppies/border_collie_idle.png" alt="Border Collie">
+        <p>Border Collie</p>
+      </div>
+      <div class="puppy" data-id="groodle">
+        <img src="assets/puppies/groodle_idle.png" alt="Groodle">
+        <p>Groodle</p>
+      </div>
+      <div class="puppy" data-id="cavoodle">
+        <img src="assets/puppies/cavoodle_idle.png" alt="Cavoodle">
+        <p>Cavoodle</p>
+      </div>
+      <div class="puppy" data-id="german_shepherd">
+        <img src="assets/puppies/german_shepherd_idle.png" alt="German Shepherd">
+        <p>German Shepherd</p>
+      </div>
+    </div>
+  </div>
+  <!-- Item selection (simple) -->
+  <div id="itemScene" class="scene">
+    <h2>Pick Your Puppy Supplies</h2>
+    <form id="itemForm">
+      <div class="itemOption">
+        <input type="checkbox" id="leash" name="items" value="leash" checked>
+        <label for="leash"><img src="assets/items/leash.png" alt="Leash">Leash</label>
+      </div>
+      <div class="itemOption">
+        <input type="checkbox" id="bowl" name="items" value="bowl" checked>
+        <label for="bowl"><img src="assets/items/bowl.png" alt="Bowl">Bowl</label>
+      </div>
+      <button type="submit">Next</button>
+    </form>
+  </div>
+  <!-- Name Scene -->
+  <div id="nameScene" class="scene">
+    <h2>Name Your Puppy</h2>
+    <form id="nameForm">
+      <label>Your Name:<br>
+        <input type="text" id="playerName" required>
+      </label><br><br>
+      <label>Puppy Name:<br>
+        <input type="text" id="puppyName" required>
+      </label><br>
+      <p id="nameHint" class="hint">Puppy name must start with the first letter of your name.</p>
+      <button type="submit">Take Puppy Home</button>
+    </form>
+  </div>
+  <!-- House Scene -->
+  <div id="houseScene" class="scene">
+    <h2>Welcome Home!</h2>
+    <div class="houseContainer">
+      <img src="assets/backgrounds/house_exterior.png" class="houseImage" id="houseExterior" alt="House Exterior">
+      <img src="assets/backgrounds/laundry.png" class="houseImage hidden" id="houseInterior" alt="Laundry Interior">
+      <img id="puppyHouse" src="" class="puppyHouse" alt="Puppy In House">
+    </div>
+    <p id="houseText">Your puppy will sleep in the laundry tonight.</p>
+    <button id="nextMorningBtn">Next</button>
+  </div>
+  <!-- Tamagotchi Scene -->
+  <div id="tamagotchiScene" class="scene">
+    <h2>Take Care of Your Puppy</h2>
+    <div id="dogContainer">
+      <img id="tamagotchiDog" src="" alt="Your Puppy">
+    </div>
+    <div id="statBars">
+      <div class="stat">
+        <span>Hunger</span>
+        <div class="bar"><div class="fill" id="hungerFill"></div></div>
+      </div>
+      <div class="stat">
+        <span>Fun</span>
+        <div class="bar"><div class="fill" id="funFill"></div></div>
+      </div>
+      <div class="stat">
+        <span>Cleanliness</span>
+        <div class="bar"><div class="fill" id="cleanFill"></div></div>
+      </div>
+      <div class="stat">
+        <span>Energy</span>
+        <div class="bar"><div class="fill" id="energyFill"></div></div>
+      </div>
+    </div>
+    <p id="statusMsg">Your puppy is waiting for you!</p>
+    <div id="actions">
+      <button id="feedBtn">Feed</button>
+      <button id="playBtn">Play Ball</button>
+      <button id="trainBtn">Teach Trick</button>
+      <button id="brushBtn">Brush</button>
+      <button id="walkBtn">Walk</button>
+      <button id="resetBtn">Reset</button>
+    </div>
+  </div>
+</div>
+<script src="game.js"></script>
+</body>
+</html>
