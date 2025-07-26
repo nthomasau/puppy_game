@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     tamagotchi: document.getElementById('tamagotchiScene'),
   };
 
+  let selectedGender = "";
   let selectedCharacter = null;
   let selectedPuppy = null;
   let selectedItems = [];
@@ -28,17 +29,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const colorList = [
-    {name: 'Red', value: '#ff0000'},
-    {name: 'Orange', value: '#ff7f00'},
-    {name: 'Yellow', value: '#ffff00'},
-    {name: 'Green', value: '#00ff00'},
-    {name: 'Blue', value: '#0000ff'},
-    {name: 'Purple', value: '#8000ff'},
-    {name: 'Pink', value: '#ff1493'},
-    {name: 'Brown', value: '#8b4513'},
-    {name: 'Black', value: '#000000'},
-    {name: 'White', value: '#ffffff'},
-    {name: 'Neon', value: '#39ff14'}
+    {name: "Red", value: "#ff0000"},
+    {name: "Orange", value: "#ffa500"},
+    {name: "Yellow", value: "#ffff00"},
+    {name: "Light Green", value: "#90ee90"},
+    {name: "Light Blue", value: "#add8e6"},
+    {name: "Dark Blue", value: "#00008b"},
+    {name: "Dark Pink", value: "#ff1493"},
+    {name: "Purple", value: "#800080"},
+    {name: "Violet", value: "#8f00ff"}
   ];
 
   function buildColorOptions(container) {
@@ -73,9 +72,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Start button
   document.getElementById('startBtn').addEventListener('click', () => {
-    showScene('character');
+    showScene('gender');
   });
-
+  // Gender selection
+  document.querySelectorAll('#genderScene .genderOption').forEach(opt => {
+    opt.addEventListener('click', () => {
+      selectedGender = opt.dataset.gender;
+      document.querySelectorAll('#characterScene .character').forEach(c => {
+        c.style.display = c.dataset.gender === selectedGender ? 'flex' : 'none';
+      });
+      showScene('character');
+    });
+  });
   // Character selection
   document.querySelectorAll('#characterScene .character').forEach(elem => {
     elem.addEventListener('click', () => {
